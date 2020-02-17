@@ -1,4 +1,8 @@
-package app.OperationalSymbol;
+/**
+ * Edit and run with VSCode, default encoding: UTF-8
+ */
+
+ package app.OperationalSymbol;
 
 /**
  * 运算符练习代码
