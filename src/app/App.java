@@ -8,5 +8,7 @@ public class App {
         OperationalSymbol operationalSymbol = new OperationalSymbol();
         operationalSymbol.test0();
         operationalSymbol.test1();
+        operationalSymbol.test2();
+        operationalSymbol.test3();
     }
 }
