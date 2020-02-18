@@ -17,11 +17,20 @@ public class App {
         operationalSymbol.test3();
         */
         SyntacticStructure syntacticStructure = new SyntacticStructure();
-
+/*
         syntacticStructure.test0();
         syntacticStructure.test1();
         syntacticStructure.test2();
         syntacticStructure.test3();
         syntacticStructure.test4();
+        syntacticStructure.test5();
+        syntacticStructure.test6();
+        syntacticStructure.test7();
+        syntacticStructure.test8();
+        syntacticStructure.test9();
+        syntacticStructure.test10();
+        syntacticStructure.test11();*/
+        syntacticStructure.test12();
+
     }
 }

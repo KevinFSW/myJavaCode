@@ -196,21 +196,261 @@ public class SyntacticStructure{
                 break;
         }
     }
-                        
-/*      待完成
+  
+    public static void test5(){
+    /*      
         循环结构
             for   
         
             练习 
-            操场上有x个人，三人一组多一个，四人一组多两个，五人一组多两个，求x。
-            甲乙丙丁加工370个零件，如果甲多10，乙少20个，丙乘以2，丁除以2，则四人加工数相等，求四人实际每人加工多少。
-            鸡兔同笼问题，鸡兔总数50，脚160，求鸡和兔各多少。
-            通过循环寻找三位数的水仙花数，例如153，1^3+5^3+3^3 = 153。
+    
+            操场上有一百多个人，三人一组多一个，四人一组多两个，五人一组多两个，求人数。
+            x%3 = 1; x%4 = 2; x%5 = 2;
+    */        
+        int x = 100;
+        for(x = 100; x < 200; x++)
+        {
+            if(x%3 == 1 && x%4 == 2 && x%5 == 2)
+            {
+                System.out.println("总共有" + x + "人");
+                break;//去掉break，可以知道答案是否唯一
+            }
+        }
+    }
+
+    public static void test6(){
+    /*      
+        循环结构
+            for   
         
+            练习 
+    
+            甲a乙b丙c丁d加工370个零件，如果甲多10，乙少20个，丙乘以2，丁除以2，则四人加工数相等，求四人实际每人加工多少。
+            a+10==b-20==c*2==d/2;
+    */
+
+        int x = 10;//x=a+10;因为a不会是负数，所以x大于等于10
+        //a=x-10;b=x+20;c=x/2;d=x*2;
+
+        for(x = 10; x < 370/2; x++)
+        {
+            if(x-10+x+20+x/2+x*2 == 370)
+            {
+                System.out.printf("甲 %d，乙 %d，丙 %d，丁 %d\n", x-10, x+20, x/2, x*2);
+                return;
+            }
+        }
+    }
+
+    public static void test7(){
+    /*      
+        循环结构
+            for   
+        
+            练习 
+            
+            鸡a兔b同笼问题，鸡兔总数50，脚160，求鸡和兔各多少。
+            a*2+b*4=160,b=50-a;
+    */
+        int a = 0;//鸡
+        //50-a=兔
+
+        for(a = 0; a < 50; a++)
+        {
+            if(a*2+(50-a)*4==160)
+            {
+                System.out.printf("鸡 %d，兔 %d\n", a, 50-a);
+                return;
+            }
+        }
+    }
+
+    public static void test8(){
+    /*
+        循环结构
+            for   
+        
+            练习 
+    
+            通过循环寻找三位数的水仙花数，例如153，1^3+5^3+3^3 = 153。
+            99<x<1000,(x/100)^3+(x%100/10)^3+(x%10)^3 == x;
+    */
+        int x = 100;
+
+        for(x = 100; x < 1000; x++)
+        {
+            if(Math.pow(x/100, 3)+Math.pow(x%100/10, 3)+Math.pow(x%10, 3) == x)
+            {
+                System.out.print(x+",");
+            }
+        }
+        System.out.println("");
+    }
+
+    private static void draw(int row, int rank, char drawCh, boolean newLine){
+        for(int i = 0; i < row; i++)
+        {
+            for(int j = 0; j < rank; j++)
+            {
+                System.out.print(drawCh);
+            }
+
+            if(newLine)
+            {
+                System.out.println();
+            }
+        }
+    }
+
+    public static void test9(){
+        /*
+        循环嵌套
+        练习
+        *******
+        ***#***
+        **###**
+        *#####*
+        */
+
+        for(int i = 0; i < 4; i++)
+        {
+            /*
+            ****
+            ***#
+            **##
+            *###
+            */
+            for(int j = 0; j < 4-i; j++)
+            {
+                System.out.print("*");
+            }
+
+            for(int j = 0; j < i; j++)
+            {
+                System.out.print("#");
+            }
+
+            /*
+            ****
+            #***
+            ##**
+            ###*
+            但是要去掉每行第一个 
+            */
+            for(int j = 1; j < i; j++)
+            {
+                System.out.print("#");
+            }
+
+            for(int j = 0; j < 4-i; j++)
+            {
+                if(i!=0 || j!=0)
+                    System.out.print("*");
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void test10(){
+        /*
+        循环嵌套
+        练习
+           1   
+          121  
+         12321 
+        1234321
+        */
+
+        for(int i = 1; i <= 4; i++)
+        {
+            /*
+               1
+              12
+             123
+            1234
+            */
+            for(int j = 1; j <= 4-i; j++)
+            {
+                System.out.print(" ");
+            }
+
+            for(int j = 1; j <= i; j++)
+            {
+                System.out.print(j);
+            }
+
+            /*
+            1   
+            21  
+            321 
+            4321
+            但是要去掉每行第一个 
+            */
+            for(int j = 2; j <= i; j++)
+            {
+                System.out.print(i-j+1);
+            }
+
+            for(int j = 1; j <= 4-i; j++)
+            {
+                System.out.print(" ");
+            }
+
+            System.out.println();
+        }
+    }
+
+    public static void test11(){
+    /*
+        循环嵌套
+        练习
+        1*1=1
+        1*2=2  2*2=4
+        1*3=3  2*3=6  3*3=9
+    */
+        for(int i = 1; i <= 5; i++)
+        {
+            for(int j = 1; j <= i; j++)
+            {
+                System.out.print(j+"*"+i+"="+j*i+" ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void test12(){
+    /*
+        循环嵌套
+        练习
+
+        找2～100之间的素数
+    */
+        boolean isPrime = false;//标记从循环出来的结果
+        for(int i = 2; i <= 100; i++)
+        {
+            isPrime = true;
+            for(int j = 2; j < i; j++)//对非1和非自身的数取余数，余数为0说明能被整除，不是素数
+            {
+                if(i%j == 0)
+                {
+                    isPrime = false;
+                    System.out.println(i+"不是素数");
+                    break;//不是素数则跳出取余循环，判断下一个数字
+                }
+            }
+
+            if(isPrime == true)//是素数
+            {
+                System.out.println(i+"是素数");
+            }
+        }
+    }
+    
+/*              
         while   do…while
         
             import java.util.Scanner;
             Scanner练习    
- */        
-
+*/ 
 }
