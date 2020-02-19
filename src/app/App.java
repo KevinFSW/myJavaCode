@@ -10,27 +10,29 @@ import app.SyntacticStructure.*;
 public class App {
     public static void main(String[] args) throws Exception {
         /*
-        OperationalSymbol operationalSymbol = new OperationalSymbol();
-        operationalSymbol.test0();
-        operationalSymbol.test1();
-        operationalSymbol.test2();
-        operationalSymbol.test3();
+        OperationalSymbol.test0();
+        OperationalSymbol.test1();
+        OperationalSymbol.test2();
+        OperationalSymbol.test3();
         */
-        SyntacticStructure syntacticStructure = new SyntacticStructure();
-/*
-        syntacticStructure.test0();
-        syntacticStructure.test1();
-        syntacticStructure.test2();
-        syntacticStructure.test3();
-        syntacticStructure.test4();
-        syntacticStructure.test5();
-        syntacticStructure.test6();
-        syntacticStructure.test7();
-        syntacticStructure.test8();
-        syntacticStructure.test9();
-        syntacticStructure.test10();
-        syntacticStructure.test11();*/
-        syntacticStructure.test12();
-
+        /*
+        SyntacticStructure.test0();
+        SyntacticStructure.test1();
+        SyntacticStructure.test2();
+        SyntacticStructure.test3();
+        SyntacticStructure.test4();
+        SyntacticStructure.test5();
+        SyntacticStructure.test6();
+        SyntacticStructure.test7();
+        SyntacticStructure.test8();
+        SyntacticStructure.test9();
+        SyntacticStructure.test10();
+        SyntacticStructure.test11();
+        SyntacticStructure.test12();
+        SyntacticStructure.test13();
+        SyntacticStructure.test14();
+        SyntacticStructure.test15();
+        */
+        SyntacticStructure.test16();
     }
 }

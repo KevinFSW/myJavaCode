@@ -311,8 +311,11 @@ public class SyntacticStructure{
         **###**
         *#####*
         */
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入行数：");
+        int row = input.nextInt();
 
-        for(int i = 0; i < 4; i++)
+        for(int i = 0; i < row; i++)
         {
             /*
             ****
@@ -320,7 +323,7 @@ public class SyntacticStructure{
             **##
             *###
             */
-            for(int j = 0; j < 4-i; j++)
+            for(int j = 0; j < row-i; j++)
             {
                 System.out.print("*");
             }
@@ -342,7 +345,7 @@ public class SyntacticStructure{
                 System.out.print("#");
             }
 
-            for(int j = 0; j < 4-i; j++)
+            for(int j = 0; j < row-i; j++)
             {
                 if(i!=0 || j!=0)
                     System.out.print("*");
@@ -361,8 +364,11 @@ public class SyntacticStructure{
          12321 
         1234321
         */
+        Scanner input = new Scanner(System.in);
+        System.out.println("请输入行数：");
+        int row = input.nextInt();
 
-        for(int i = 1; i <= 4; i++)
+        for(int i = 1; i <= row; i++)
         {
             /*
                1
@@ -370,7 +376,7 @@ public class SyntacticStructure{
              123
             1234
             */
-            for(int j = 1; j <= 4-i; j++)
+            for(int j = 1; j <= row-i; j++)
             {
                 System.out.print(" ");
             }
@@ -392,7 +398,7 @@ public class SyntacticStructure{
                 System.out.print(i-j+1);
             }
 
-            for(int j = 1; j <= 4-i; j++)
+            for(int j = 1; j <= row-i; j++)
             {
                 System.out.print(" ");
             }
@@ -409,11 +415,11 @@ public class SyntacticStructure{
         1*2=2  2*2=4
         1*3=3  2*3=6  3*3=9
     */
-        for(int i = 1; i <= 5; i++)
+        for(int i = 1; i <= 9; i++)
         {
             for(int j = 1; j <= i; j++)
             {
-                System.out.print(j+"*"+i+"="+j*i+" ");
+                System.out.print(j+"*"+i+"="+j*i+"\t");
             }
             System.out.println();
         }
@@ -446,11 +452,98 @@ public class SyntacticStructure{
             }
         }
     }
+
+    public static void test13(){
+        /**
+         * 循环标记
+         * 练习
+         */
+        loop1:for (int i = 0; i < 5; i++) {
+            System.out.println("loop1 : " + i);
+            loop2:for (int j = 0; j < 5; j++) {
+                if (j == 3) {
+                    //break loop1;
+                    continue loop2;
+                }
+                System.out.println("    loop2 : " + j);
+            }
+        }
+    }
     
-/*              
-        while   do…while
-        
-            import java.util.Scanner;
-            Scanner练习    
-*/ 
+    public static void test14(){
+        /**
+         * while 
+         * 练习
+         *    *
+         *   ***
+         *  *****
+         * *******
+         * 行 空格 *
+         * 1   3   1
+         * 2   2   3
+         * 3   1   5
+         * 4   0   7
+         */
+        int i = 1;
+        int j = 1;
+
+        while(i <= 4)
+        {
+            j = 1;
+            while(j <= 4-i)
+            {
+                System.out.print(" ");
+                j++;
+            }
+
+            j = 1;
+            while (j <= 2*i-1) {
+                System.out.print("*");
+                j++;                
+            }
+
+            System.out.println();
+            i++;
+        }
+    }
+
+    public static void test15(){
+        /**
+         * while
+         * 练习
+         * 相遇问题
+         * 小明从A以7速度向B出发，哥哥从B以18速度向A出发，
+         * AB距离1000，多久相遇。
+         */
+
+         int i = 0;//两个人的初始路程为0
+         int j = 0;
+
+         while(i + j < 1000)//相遇时，两人路程之和必定等于1000
+         {
+            i += 7;
+            j += 18;
+         }
+
+         System.out.println("经过" + i/7 + "小时后相遇");//路程除以速度等于时间
+    }
+
+    public static void test16(){
+        /**
+         * while 
+         * 练习
+         * 一车西瓜1020个每天卖掉总数的一半多两个，多久能卖完
+         */
+        int watermelon = 1020;
+        int day = 0;
+
+        while(watermelon > 0)
+        {
+            watermelon = watermelon/2 - 2;
+            day++; 
+        }
+
+        System.out.println("经过" + day + "天卖完");
+    }
+
 }
