@@ -2,10 +2,11 @@
  * Edit and run with VSCode, default encoding: UTF-8
  */
 
- package app;
+package app;
 
 import app.OperationalSymbol.*;
 import app.SyntacticStructure.*;
+import app.Array.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -32,7 +33,18 @@ public class App {
         SyntacticStructure.test13();
         SyntacticStructure.test14();
         SyntacticStructure.test15();
-        */
         SyntacticStructure.test16();
+        */
+        Array array = new Array();
+        ///*
+        array.testArrayInit();
+        array.exchangeTwoArrayValue();
+        array.exchangeArrayHeadTail();
+        array.getArrayAverageValue();
+        array.getArrayMaxAndMin();
+        array.getArraySorted();
+        array.arrayCombine();
+        //*/
+        array.deleteArrayZeroElement();
     }
 }
