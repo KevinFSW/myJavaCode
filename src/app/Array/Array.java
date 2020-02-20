@@ -1,49 +1,57 @@
 package app.Array;
-
+/*
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+*/
 import java.util.Scanner;
 
-public class Array{
+public class Array {
     /**
      * 数组初始化练习
      */
-    public void testArrayInit(){
+    public void testArrayInit() {
         /**
          * 静态初始化
          */
-        int[] array0 = new int[]{0,1,2,3,4,5,6,7,8,9};
-        int[] array1 = {9,8,7,6,5,4,3,2,1,0}; 
+        System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
+        int[] array0 = new int[] { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+        int[] array1 = { 9, 8, 7, 6, 5, 4, 3, 2, 1, 0 };
         /**********************************************
-         * 以下三种初始化都是正确可用的
-        //int[] array1 = {0,1,2,3,4,5,6,7,8,9};
-        //int array1[] = {0,1,2,3,4,5,6,7,8,9};
-        //int [] array1 = {0,1,2,3,4,5,6,7,8,9}; 
-        ***********************************************/
+         * 以下三种初始化都是正确可用的 //int[] array1 = {0,1,2,3,4,5,6,7,8,9}; //int array1[] =
+         * {0,1,2,3,4,5,6,7,8,9}; //int [] array1 = {0,1,2,3,4,5,6,7,8,9};
+         ***********************************************/
 
         /**
          * 动态初始化
          */
         int[] array3 = new int[10];
     }
-    
+
     /**
      * 数组练习，两个数组的值对应互换
      */
-    public void exchangeTwoArrayValue(){
-        int[] array0 = {0,1,2,3,4};
-        int[] array1 = {5,6,7,8,9};
+    public void exchangeTwoArrayValue() {
+        int[] array0 = { 0, 1, 2, 3, 4 };
+        int[] array1 = { 5, 6, 7, 8, 9 };
 
-        for(int i = 0; i < array0.length; i++)
-        {
-            /**
-             * 值互换，用异或的方法
-             */
-            array0[i] = array0[i]^array1[i];
-            array1[i] = array0[i]^array1[i];
-            array0[i] = array0[i]^array1[i];
-        }
+        System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
+        
+        //这个方法无法解决数组长度不一样的问题
+        /* for (int i = 0; i < array0.length; i++) {
+             // 值互换，用异或的方法
+            array0[i] = array0[i] ^ array1[i];
+            array1[i] = array0[i] ^ array1[i];
+            array0[i] = array0[i] ^ array1[i];
+        } */
+
+        //直接交换引用，可以解决数组长度不一样的问题
+        int[] temp = array0;
+        array0 = array1;
+        array1 = temp;
 
         for (int i : array0) {
-            System.out.print(i+ ",");
+            System.out.print(i + ",");
         }
         System.out.println();
 
@@ -56,18 +64,18 @@ public class Array{
     /**
      * 数组练习，将一个数组的头尾值互换
      */
-    public void exchangeArrayHeadTail(){
-        int[] array = {0,1,2,3,4,5,6,7,8};
+    public void exchangeArrayHeadTail() {
+        int[] array = { 0, 1, 2, 3, 4, 5, 6, 7, 8 };
 
-        for(int i = 0; i < array.length/2; i++)//遍历一半即可
+        System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
+        for (int i = 0; i < array.length / 2; i++)// 遍历一半即可
         {
             /**
-             * 值互换，用异或的方法
-             * i 顺数第i个， (array.length - 1 - i)倒数第i个
+             * 值互换，用异或的方法 i 顺数第i个， (array.length - 1 - i)倒数第i个
              */
-            array[i] = array[i]^array[array.length - 1 - i];
-            array[array.length - 1 - i] = array[i]^array[array.length - 1 - i];
-            array[i] = array[i]^array[array.length - 1 - i];
+            array[i] = array[i] ^ array[array.length - 1 - i];
+            array[array.length - 1 - i] = array[i] ^ array[array.length - 1 - i];
+            array[i] = array[i] ^ array[array.length - 1 - i];
         }
 
         for (int i : array) {
@@ -79,10 +87,11 @@ public class Array{
     /**
      * 数组练习，计算数组平均值
      */
-    public void getArrayAverageValue(){
-        int[] array = {0,1,2,3,4,5,6,7,8,9};
+    public void getArrayAverageValue() {
+        int[] array = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
         double averageValue = 0;
 
+        System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
         for (int i = 0; i < array.length; i++) {
             averageValue += array[i];
         }
@@ -100,18 +109,19 @@ public class Array{
     /**
      * 数组练习，寻找数组的最大最小值
      */
-    public void getArrayMaxAndMin(){
-        int[] array = {1,5,3,4,8,5,7,4};
-        int max = array[0];//配置初始值
+    public void getArrayMaxAndMin() {
+        int[] array = { 1, 5, 3, 4, 8, 5, 7, 4 };
+        int max = array[0];// 配置初始值
         int min = array[0];
 
-        for (int i = 0; i < array.length; i++) {
-            if(array[i] > max)//大过就填入替换
+        System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max)// 大过就填入替换
             {
                 max = array[i];
             }
 
-            if(array[i] < min)//小过就填入替换
+            if (array[i] < min)// 小过就填入替换
             {
                 min = array[i];
             }
@@ -128,15 +138,16 @@ public class Array{
     /**
      * 数组练习，合并两个数组
      */
-    public void arrayCombine(){
-        int[] array0 = {0,1,2,3};
-        int[] array1 = {0,7,4,3,2,8,20,24};
-        int[] arrayCombine = new int[array0.length + array1.length];//根据两个数组的长度创建新数组
+    public void arrayCombine() {
+        int[] array0 = { 0, 1, 2, 3 };
+        int[] array1 = { 0, 7, 4, 3, 2, 8, 20, 24 };
+        int[] arrayCombine = new int[array0.length + array1.length];// 根据两个数组的长度创建新数组
 
+        System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
         for (int i = 0; i < arrayCombine.length; i++) {
-            if (i < array0.length){
+            if (i < array0.length) {
                 arrayCombine[i] = array0[i];
-            }else{
+            } else {
                 arrayCombine[i] = array1[i - array0.length];
             }
         }
@@ -150,26 +161,25 @@ public class Array{
     /**
      * 数组练习，去掉数组的0元素
      */
-    public void deleteArrayZeroElement(){
-        int[] array = {1,5,3,0,0,4,8,5,0,7,4};
+    public void deleteArrayZeroElement() {
+        int[] array = { 1, 5, 3, 0, 0, 4, 8, 5, 0, 7, 4 };
         int zeroCnt = 0;
 
+        System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
         for (int i : array) {
-            if(i == 0)
-            {
-                zeroCnt++;//检查0元素的个数
+            if (i == 0) {
+                zeroCnt++;// 检查0元素的个数
             }
         }
 
-        if(zeroCnt == 0)
-        {
+        if (zeroCnt == 0) {
             System.out.println("数组中没有0");
             return;
         }
 
-        int[] arrayX0 = new int[array.length - zeroCnt];//创建新数组
+        int[] arrayX0 = new int[array.length - zeroCnt];// 创建新数组
         for (int i = 0, j = 0; i < array.length; i++) {
-            if(array[i] != 0)//非0才填入新数组
+            if (array[i] != 0)// 非0才填入新数组
             {
                 arrayX0[j] = array[i];
                 j++;
@@ -187,11 +197,59 @@ public class Array{
     }
 
     /**
+     * 数组练习，按照数组中的最大值分割数组
+     */
+    public void arrayCutByMax() {
+        int[] array = { 9, 5, 3, 4, 8, 5, 7, 4, 10 };
+        int max = array[0];// 配置初始值
+        int maxIndex = 0;
+
+        System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
+        for (int i = 1; i < array.length; i++) {
+            if (array[i] > max)// 大过就填入替换
+            {
+                max = array[i];
+                maxIndex = i;
+            }
+        }
+
+        // if(maxIndex > 0 && maxIndex < array.length-1)//最大值不在头和尾
+        // {
+        int[] array0 = new int[maxIndex];
+        int[] array1 = new int[array.length - maxIndex - 1];
+
+        for (int i = 0; i < array.length; i++) {
+            if (i < maxIndex)// 大过就填入替换
+            {
+                array0[i] = array[i];
+            } else if (i > maxIndex) {
+                array1[i - maxIndex - 1] = array[i];
+            }
+        }
+        // }
+
+        System.out.print("数组：\n{");
+        for (int i : array) {
+            System.out.print(i + ",");
+        }
+        System.out.printf("}\n被第%d个元素%d分割为：\n{", maxIndex, array[maxIndex]);
+        for (int i : array0) {
+            System.out.print(i + ",");
+        }
+        System.out.print("}; {");
+        for (int i : array1) {
+            System.out.print(i + ",");
+        }
+        System.out.println("}");
+    }
+
+    /**
      * 数组练习，冒泡排序
      */
-    public void getArraySorted(){
-        int[] array = {1,5,3,4,8,5,7,4};
+    public void arraySorted() {
+        int[] array = { 1, 5, 3, 4, 8, 5, 7, 4 };
 
+        System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
         for (int i : array) {
             System.out.print(i + ",");
         }
@@ -199,14 +257,13 @@ public class Array{
 
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {
-                if(array[j] > array[j+1])
-                {
+                if (array[j] > array[j + 1]) {
                     /**
                      * 值互换，用异或的方法
                      */
-                    array[j] = array[j]^array[j+1];
-                    array[j+1] = array[j]^array[j+1];
-                    array[j] = array[j]^array[j+1];
+                    array[j] = array[j] ^ array[j + 1];
+                    array[j + 1] = array[j] ^ array[j + 1];
+                    array[j] = array[j] ^ array[j + 1];
                 }
             }
         }
@@ -215,6 +272,68 @@ public class Array{
             System.out.print(i + ",");
         }
         System.out.println();
+    }
+
+    /**
+     * 数组练习，用户登录认证
+     */
+    public void userSignAndLogin() {
+        /*
+        // 读取文件
+        File file = new File("./user.txt");
+        Scanner fileScanner;
+        int initUserCnt = 0;
+        if (file.exists() == false) {
+            try {
+                file.createNewFile();// 文件不存在则创建
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return;
+            }
+        } else {
+            try {
+                fileScanner = new Scanner(file);
+            } catch (FileNotFoundException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+                return;
+            }
+            initUserCnt = fileScanner.nextInt();
+        }
+
+        //创建初始配置文件的数组
+        String[][] initUser = new String[initUserCnt][2];
+        if(initUserCnt > 0)
+        {
+            for (int i = 0; i < initUserCnt; i++) {
+                initUser[i][0] = fileScanner.nextLine();
+            }
+        }
+        */
+
+        //创建保存用户名和密码的数组，通过文件保存和读取待完成
+        String[][] userAndPwd = {
+            {"user0", "12345678"},
+            {"user1", "87654321"},
+        };
+        //提示用户登录。
+        System.out.println("请输入用户名：");
+        Scanner input = new Scanner(System.in);
+        String user = input.nextLine();
+        System.out.println("请输入密码：");
+        String pwd = input.nextLine();
+
+        //System.out.println(userAndPwd.length);
+        
+        for (int i = 0; i < userAndPwd.length; i++) {
+            if(user.equals(userAndPwd[i][0]) && pwd.equals(userAndPwd[i][1]))
+            {
+                System.out.println("login:"+userAndPwd[i][0]+":"+userAndPwd[i][1]);
+                return;
+            }
+        }
+        System.out.println("login failed");
     }
 
 }

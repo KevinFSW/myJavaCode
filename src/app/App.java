@@ -42,9 +42,12 @@ public class App {
         array.exchangeArrayHeadTail();
         array.getArrayAverageValue();
         array.getArrayMaxAndMin();
-        array.getArraySorted();
-        array.arrayCombine();
-        //*/
         array.deleteArrayZeroElement();
+        array.arrayCombine();
+        array.arrayCutByMax();
+        array.arraySorted();
+        array.userSignAndLogin();
+        //*/
+        
     }
 }
