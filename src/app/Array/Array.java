@@ -163,9 +163,11 @@ public class Array {
      */
     public void deleteArrayZeroElement() {
         int[] array = { 1, 5, 3, 0, 0, 4, 8, 5, 0, 7, 4 };
-        int zeroCnt = 0;
 
         System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
+        /*
+        //这个方法对于大量的数据可能效率比较低
+        int zeroCnt = 0;
         for (int i : array) {
             if (i == 0) {
                 zeroCnt++;// 检查0元素的个数
@@ -185,6 +187,24 @@ public class Array {
                 j++;
             }
         }
+        */
+
+        //下面的方法比上面的方法效率高
+        int[] arrayTemp = new int[array.length];
+        int arrayTempIndex = 0;
+        for (int i = 0; i < array.length; i++) {
+            if(array[i] != 0)//先把不为0的存起来
+            {
+                arrayTemp[arrayTempIndex++] = array[i];
+            }
+        }
+
+        int[] arrayX0 = new int[arrayTempIndex];//根据不为0的元素数量创建新数组
+        for (int i = 0; i < arrayX0.length; i++) {
+            arrayX0[i] = arrayTemp[i];
+        }
+
+        arrayTemp = null;//释放中间资源
 
         for (int i : array) {
             System.out.print(i + ",");
@@ -200,11 +220,13 @@ public class Array {
      * 数组练习，按照数组中的最大值分割数组
      */
     public void arrayCutByMax() {
-        int[] array = { 9, 5, 3, 4, 8, 5, 7, 4, 10 };
-        int max = array[0];// 配置初始值
-        int maxIndex = 0;
+        int[] array = {0, 10, 10, 9, 5, 10, 4, 8, 10, 5, 7, 4, 10, 0};
 
         System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
+        /*
+        //以下的方法只处理了只有一个最大元素的情况
+        int max = array[0];// 配置初始值
+        int maxIndex = 0;
         for (int i = 1; i < array.length; i++) {
             if (array[i] > max)// 大过就填入替换
             {
@@ -213,8 +235,6 @@ public class Array {
             }
         }
 
-        // if(maxIndex > 0 && maxIndex < array.length-1)//最大值不在头和尾
-        // {
         int[] array0 = new int[maxIndex];
         int[] array1 = new int[array.length - maxIndex - 1];
 
@@ -226,7 +246,6 @@ public class Array {
                 array1[i - maxIndex - 1] = array[i];
             }
         }
-        // }
 
         System.out.print("数组：\n{");
         for (int i : array) {
@@ -241,6 +260,89 @@ public class Array {
             System.out.print(i + ",");
         }
         System.out.println("}");
+        */
+
+        //下面的方法处理有n个最大元素的情况
+        int max = array[0];// 配置初始值
+        int[] maxIndex = new int[array.length];//用于存放最大元素的索引
+        int maxCnt = 0;//用于计算最大元素的个数
+        for (int i = 0; i < array.length; i++) {
+            if (array[i] > max)//大过就填入替换，同时最大元素的个数重置为1，记录索引
+            {
+                max = array[i];
+                maxCnt = 1;
+                maxIndex[maxCnt-1] = i;
+            }
+            else if(array[i] == max)//等于当前的最大元素，记录最大元素的索引，同时cnt++
+            {
+                maxIndex[maxCnt] = i;
+                maxCnt++;
+            }
+        }
+
+        //根据最大元素的个数创建一个二维数组。第二维就是分割出来的数组，其长度需要根据最大元素的索引创建
+        int[][] tempArray = new int[maxCnt+1][];
+        for (int i = 0, subArrayLen = 0; i < tempArray.length; i++) {
+            if(i == 0) //newArray[0][]的长度直接用第一个索引创建  假设：这是第一个
+            {
+                subArrayLen = maxIndex[i];
+            }
+            else if (i == tempArray.length - 1)//newArray[length-1][]的长度
+            {
+                subArrayLen = array.length - maxIndex[i-1] - 1;
+            }
+            else//不是第一个和最后一个的要计算一下，创建的数组长度等于当前的索引减去前一个索引再减一
+            {
+                subArrayLen = maxIndex[i] - maxIndex[i-1] - 1;
+            }
+
+            tempArray[i] = new int[subArrayLen];//这个就是分割后得到的数组 
+            for (int j = 0; j < tempArray[i].length; j++) {
+                if(i == 0)
+                {
+                    tempArray[i][j] = array[j];//被分割出来的第一个数组，从原数组的0索引开始取值
+                }
+                else
+                {
+                    tempArray[i][j] = array[maxIndex[i-1]+j+1];//非第一个，要根据最大元素的索引取值
+                }
+            }
+        }
+
+        //检查分割出来的数组是否有空数组
+        int emptyArrayCnt = 0;
+        for (int i = 0; i < tempArray.length; i++) {
+            if(tempArray[i].length == 0)
+            {
+                emptyArrayCnt++;
+            }
+        }
+
+        int[][] newArray;
+        if(emptyArrayCnt == 0)//没有空数组，直接赋值引用
+        {
+            newArray = tempArray;
+        }
+        else //有空数组，去除空数组
+        {
+            newArray = new int[tempArray.length - emptyArrayCnt][];
+            int newArrayIndex = 0;
+            for (int i = 0; i < tempArray.length; i++) {
+                if(tempArray[i].length > 0)
+                {
+                    newArray[newArrayIndex++] = tempArray[i];
+                }
+            }
+        }
+
+        tempArray = null;
+        //打印出来看看而已
+        for (int[] is : newArray) {
+            for (int is2 : is) {
+                System.out.print(is2+"\t");
+            }
+            System.out.println();
+        }
     }
 
     /**

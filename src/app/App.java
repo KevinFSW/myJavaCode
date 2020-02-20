@@ -36,7 +36,7 @@ public class App {
         SyntacticStructure.test16();
         */
         Array array = new Array();
-        ///*
+        /*
         array.testArrayInit();
         array.exchangeTwoArrayValue();
         array.exchangeArrayHeadTail();
@@ -44,10 +44,9 @@ public class App {
         array.getArrayMaxAndMin();
         array.deleteArrayZeroElement();
         array.arrayCombine();
-        array.arrayCutByMax();
         array.arraySorted();
         array.userSignAndLogin();
-        //*/
-        
+        */
+        array.arrayCutByMax();
     }
 }
