@@ -7,7 +7,7 @@ package app;
 import app.OperationalSymbol.*;
 import app.SyntacticStructure.*;
 import app.Array.*;
-import app.ObjectOriented.ArrayOptClass.*;
+import app.ObjectOriented.ArrayOpt.*;
 import app.ObjectOriented.DrawStar.*;
 
 public class App {
@@ -61,11 +61,14 @@ public class App {
         int[] array3 = {0,1,2,3,4,5,6,7,8,9};
         int[] arrayOutput;
         int[][] arrayOutut2;
-        arrayOutput = arrayOpt.findInArray(array2, 13);
-        if(arrayOutput != null)
+        arrayOutput = arrayOpt.findInArray(array2, 10);
+        if(arrayOutput != null){
+            System.out.println("找到这个元素的索引如下：");
             arrayOpt.outputArray(arrayOutput);
-        else
-            System.out.println("llllllllllll");
+        }
+        else{
+            System.out.println("找不到这个元素");
+        }
         /*
         arrayOpt.setResultOutputEnable(true);
         arrayOpt.exchangeTwoArrayValue(array0, array1);

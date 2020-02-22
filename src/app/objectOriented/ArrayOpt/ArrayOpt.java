@@ -1,4 +1,4 @@
-package app.ObjectOriented.ArrayOptClass;
+package app.ObjectOriented.ArrayOpt;
 
 import java.util.Scanner;
 
@@ -8,11 +8,16 @@ public class ArrayOpt {
 
     /**
      * 配置结果输出
+     * @param en :true 打开方法内的结果输出; false 关闭方法内的结果输出.
      */
     public void setResultOutputEnable(boolean en){
         this.resultOutputEnable = en;
     }
 
+    /**
+     * 一维数组打印输出
+     * @param array 要打印的一维数组
+     */
     public void outputArray(int[] array){
         for (int i : array) {
             System.out.print(i + "\t");
@@ -20,6 +25,10 @@ public class ArrayOpt {
         System.out.println();
     }
 
+    /**
+     * 二维数组打印输出
+     * @param array 要打印的二维数组
+     */
     public void outputArray2(int[][] array){
         for (int[] is : array) {
             for (int js : is) {
@@ -31,6 +40,8 @@ public class ArrayOpt {
 
     /**
      * 两个数组的值对应互换
+     * @param array0
+     * @param array1
      */
     public void exchangeTwoArrayValue(int[] array0, int[] array1) {
 
@@ -65,6 +76,7 @@ public class ArrayOpt {
 
     /**
      * 将一个数组的头尾值互换
+     * @param array
      */
     public void exchangeArrayHeadTail(int[] array) {
         if(this.resultOutputEnable){
@@ -92,6 +104,8 @@ public class ArrayOpt {
 
     /**
      * 寻找数组的最大最小值
+     * @param array
+     * @return int[0] 最小值; int[1] 最大值.
      */
     public int[] getArrayMaxAndMin(int[] array) {
         int[] maxAndMin = new int[2];//用作返回值
@@ -125,6 +139,9 @@ public class ArrayOpt {
 
     /**
      * 在数组中找元素
+     * @param array 从这个数组里面查找
+     * @param target 要找的元素
+     * @return int[x] 找到的target的索引数组
      */
     public int[] findInArray(int[] array, int target){
         int[] temp = new int[array.length];
@@ -150,6 +167,9 @@ public class ArrayOpt {
 
     /**
      * 合并两个数组
+     * @param array0
+     * @param array1
+     * @return int[] 合并后的数组
      */
     public int[] arrayCombine(int[] array0, int[] array1) {
 
@@ -179,7 +199,9 @@ public class ArrayOpt {
     }
 
     /**
-     * 数组练习，去掉数组的0元素
+     * 去掉数组的0元素
+     * @param array
+     * @return 去掉数组的0元素后得到的数组
      */
     public int[] deleteArrayZeroElement(int[] array) {
         if(this.resultOutputEnable){
@@ -239,6 +261,8 @@ public class ArrayOpt {
 
     /**
      * 按照数组中的最大值分割数组
+     * @param array
+     * @return int[][] 假设能分割成三个数组，则这三个数组分别是int[0]; int[1]; int[2]
      */
     public int[][] arrayCutByMax(int[] array) {
         //下面的方法处理有n个最大元素的情况
@@ -329,6 +353,7 @@ public class ArrayOpt {
 
     /**
      * 冒泡排序
+     * @param array
      */
     public void arraySorted(int[] array) {
         if(this.resultOutputEnable){

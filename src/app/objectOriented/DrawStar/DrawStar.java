@@ -6,9 +6,9 @@ public class DrawStar{
      * ***    ***
      * **      **
      * *        *
-     * line:想画多少行
-     * drawCh:想用什么字符画
-     * align:true 左对齐   false 右对齐
+     * @param line :想画多少行
+     * @param drawCh :想用什么字符画
+     * @param align :true 左对齐;false 右对齐
      */
     public void starDrawHandstandRightTriangle(int line, char drawCh, boolean align){
         for (int i = 0; i < line; i++) {
