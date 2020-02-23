@@ -4,11 +4,11 @@
 
 package app;
 
-import app.OperationalSymbol.*;
-import app.SyntacticStructure.*;
-import app.Array.*;
-import app.ObjectOriented.ArrayOpt.*;
-import app.ObjectOriented.DrawStar.*;
+import app.operation.*;
+import app.syntactic.*;
+import app.array.*;
+import app.object.arrayopt.*;
+import app.object.drawstar.*;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -60,7 +60,9 @@ public class App {
         int[] array2 = {10,1,3,0,9,5,4,10,10,2,10,3,10};
         int[] array3 = {0,1,2,3,4,5,6,7,8,9};
         int[] arrayOutput;
-        int[][] arrayOutut2;
+        int[][] arrayOutput2;
+        
+        arrayOpt.setResultOutputEnable(true);
         arrayOutput = arrayOpt.findInArray(array2, 10);
         if(arrayOutput != null){
             System.out.println("找到这个元素的索引如下：");
@@ -69,17 +71,30 @@ public class App {
         else{
             System.out.println("找不到这个元素");
         }
+        
         /*
-        arrayOpt.setResultOutputEnable(true);
-        arrayOpt.exchangeTwoArrayValue(array0, array1);
+        //arrayOpt.setResultOutputEnable(true);
+        arrayOutput2 = arrayOpt.exchangeTwoArrayValue(array0, array1);
+        array0 = arrayOutput2[0];
+        array1 = arrayOutput2[1];
         arrayOpt.outputArray(array0);
         arrayOpt.outputArray(array1);
+        */
+        /* 
+        arrayOpt.setResultOutputEnable(true);
+        arrayOutput = arrayOpt.findPrimeInArray(1, 50);
+        if(arrayOutput != null){
+            arrayOpt.outputArray(arrayOutput);
+        }
+        else{
+            System.out.println("输入有误或没有找到素数");
+        }
         */
         /*
         arrayOutput = arrayOpt.arrayCombine(array0, array1);
         arrayOpt.arrayCutByMax(array2);
-        arrayOpt.arraySorted(array2);
-        arrayOpt.deleteArrayZeroElement(array2);
+        arrayOpt.arraySorted(array2, true);
+        arrayOpt.deleteElementFromArray(array2, 0);
         arrayOpt.exchangeArrayHeadTail(array3);
         arrayOpt.exchangeTwoArrayValue(array0, array1);
         arrayOpt.getArrayMaxAndMin(array2);

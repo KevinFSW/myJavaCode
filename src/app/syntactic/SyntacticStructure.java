@@ -2,7 +2,7 @@
  * Edit and run with VSCode, default encoding: UTF-8
  */
 
-package app.SyntacticStructure;
+package app.syntactic;
 
 import java.util.Scanner;
 

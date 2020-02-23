@@ -2,7 +2,7 @@
  * Edit and run with VSCode, default encoding: UTF-8
  */
 
- package app.OperationalSymbol;
+ package app.operation;
 
 /**
  * 运算符练习代码

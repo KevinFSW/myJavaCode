@@ -1,4 +1,4 @@
-package app.Array;
+package app.array;
 /*
 import java.io.File;
 import java.io.FileNotFoundException;

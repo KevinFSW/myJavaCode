@@ -1,4 +1,4 @@
-package app.ObjectOriented;
+package app.object;
 
 public class ObjectOriented{
 

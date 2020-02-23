@@ -1,4 +1,4 @@
-package app.ObjectOriented.ArrayOpt;
+package app.object.arrayopt;
 
 import java.util.Scanner;
 
@@ -39,11 +39,11 @@ public class ArrayOpt {
     }
 
     /**
-     * 两个数组的值对应互换
+     * 两个数组的值对应互换 实用性不强 反而整复杂了
      * @param array0
      * @param array1
      */
-    public void exchangeTwoArrayValue(int[] array0, int[] array1) {
+    public int[][] exchangeTwoArrayValue(int[] array0, int[] array1) {
 
         if(this.resultOutputEnable){
             System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
@@ -62,16 +62,20 @@ public class ArrayOpt {
         } */
 
         //直接交换引用，可以解决数组长度不一样的问题
-        int[] temp = array0;
-        array0 = array1;
-        array1 = temp;
+        int[][] array = new int[2][];
+        array[0] = new int[array1.length]; //用于存储array1
+        array[1] = new int[array0.length]; //用于存储array0
+        array[1] = array0;
+        array[0] = array1;
 
         if(this.resultOutputEnable){
             //输出看看而已
             System.out.println("输出的数组是：");
-            this.outputArray(array0);
-            this.outputArray(array1);
+            this.outputArray(array[0]);
+            this.outputArray(array[1]);
         }
+
+        return array;
     }
 
     /**
@@ -144,6 +148,12 @@ public class ArrayOpt {
      * @return int[x] 找到的target的索引数组
      */
     public int[] findInArray(int[] array, int target){
+        if(this.resultOutputEnable){
+            System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
+            System.out.println("在数组：");
+            this.outputArray(array);
+            System.out.println("中查找" + target);
+        }
         int[] temp = new int[array.length];
         int j = 0;
         for (int i = 0; i < array.length; i++) {
@@ -159,9 +169,14 @@ public class ArrayOpt {
                 targetArray[i] = temp[i];
             }
             
+            if(this.resultOutputEnable){
+                System.out.println("找到" + j + "个, 索引如下：");
+                this.outputArray(targetArray);
+            }
             return targetArray;
         }
 
+        System.out.println("找到0个");
         return null;
     }
 
@@ -199,11 +214,12 @@ public class ArrayOpt {
     }
 
     /**
-     * 去掉数组的0元素
+     * 去掉数组的某个元素
      * @param array
+     * @param target 想要去掉的元素 
      * @return 去掉数组的0元素后得到的数组
      */
-    public int[] deleteArrayZeroElement(int[] array) {
+    public int[] deleteElementFromArray(int[] array, int target) {
         if(this.resultOutputEnable){
             System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
             System.out.println("输入的数组是：");
@@ -238,25 +254,25 @@ public class ArrayOpt {
         int[] arrayTemp = new int[array.length];
         int arrayTempIndex = 0;
         for (int i = 0; i < array.length; i++) {
-            if(array[i] != 0)//先把不为0的存起来
+            if(array[i] != target)//先把不为target的存起来
             {
                 arrayTemp[arrayTempIndex++] = array[i];
             }
         }
 
-        int[] arrayX0 = new int[arrayTempIndex];//根据不为0的元素数量创建新数组
-        for (int i = 0; i < arrayX0.length; i++) {
-            arrayX0[i] = arrayTemp[i];
+        int[] newArray = new int[arrayTempIndex];//根据不为target的元素数量创建新数组
+        for (int i = 0; i < newArray.length; i++) {
+            newArray[i] = arrayTemp[i];
         }
 
         arrayTemp = null;//释放中间资源
 
         if(this.resultOutputEnable){
             System.out.println("输出的数组是：");
-            this.outputArray(arrayX0);
+            this.outputArray(newArray);
         }
 
-        return arrayX0;
+        return newArray;
     }
 
     /**
@@ -355,7 +371,7 @@ public class ArrayOpt {
      * 冒泡排序
      * @param array
      */
-    public void arraySorted(int[] array) {
+    public void arraySorted(int[] array, boolean aToZ) {
         if(this.resultOutputEnable){
             System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
             System.out.println("输入的数组是：");
@@ -364,7 +380,7 @@ public class ArrayOpt {
 
         for (int i = 0; i < array.length - 1; i++) {
             for (int j = 0; j < array.length - 1 - i; j++) {
-                if (array[j] > array[j + 1]) {
+                if ((aToZ && array[j] > array[j + 1]) || (!aToZ && array[j] < array[j + 1])) {
                     /**
                      * 值互换，用异或的方法
                      */
@@ -379,6 +395,66 @@ public class ArrayOpt {
             System.out.println("输出的数组是：");
             this.outputArray(array);
         }
+    }
+
+    /**
+     * 从给定的范围内寻找素数
+     * @param begin 必须大于等于0
+     * @param end 必须大于等于2
+     * @return 返回素数的数组
+     */
+    public int[] findPrimeInArray(int begin, int end){
+        if (this.resultOutputEnable) {
+            System.out.printf("{%s}:\n", Thread.currentThread().getStackTrace()[1].getMethodName());
+            System.out.println("在" + begin + "和" + end + "之间找素数");
+        }
+        
+        if(begin == 1 || begin == 0){
+            begin += 2 - begin;//0和1不是素数
+        }
+        
+        //范围检查
+        if(begin > end || begin < 0 || end < 2){
+            if (this.resultOutputEnable) {
+                System.out.println("输入错误");
+            }
+            return null;
+        }
+
+        int[] temp = new int[(end - begin)/2 + 1];//存放素数的中间数组
+        int primeCnt = 0;
+        for (int i = begin; i <= end; i++) {
+            boolean isPrime = true;
+            for (int j = 2; j <= i/2; j++) {
+                if(i%j == 0){ //能被非1和自身的数整除
+                    isPrime = false;//不是素数
+                    break;
+                }
+            }
+
+            if (isPrime) {
+                temp[primeCnt++] = i;
+            }
+        }
+
+        if(primeCnt == 0){
+            if (this.resultOutputEnable) {
+                System.out.println("找到0个");
+            }
+            return null;
+        }
+
+        int[] primeArray = new int[primeCnt];
+        for (int i = 0; i < primeArray.length; i++) {
+            primeArray[i] = temp[i];//砍掉多余的元素
+        }
+
+        temp = null;
+        if (this.resultOutputEnable) {
+            System.out.println("找到" + primeCnt + "个, 如下：");
+            this.outputArray(primeArray);
+        }
+        return primeArray;
     }
 
     /**

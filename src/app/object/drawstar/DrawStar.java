@@ -1,4 +1,4 @@
-package app.ObjectOriented.DrawStar;
+package app.object.drawstar;
 
 public class DrawStar{
     /**
