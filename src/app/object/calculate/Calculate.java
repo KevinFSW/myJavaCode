@@ -10,8 +10,8 @@ public class Calculate{
      * @param opt 输入的运算符号
      * @param num2 输入的第二个数
      */
-    public void showCalResult(double num1, String opt, double num2){
-        double result = 0;
+    public float showCalResult(float num1, String opt, float num2){
+        float result = 0;
 
         switch (opt) {
             case "+":
@@ -26,30 +26,45 @@ public class Calculate{
             case "/":
                 if(num2 == 0){
                     System.out.println("除数不能是0！");
-                    return;
+                    return 0;
                 }
                 result = num1 / num2;
                 break;
             default:
                 System.out.println("无法识别这个运算符号！");
-                return;
+                return 0;
         }
 
-        System.out.printf("%f %s %f = %f\n", num1, opt, num2, result);
+        System.out.println(result);
+        return result;
     }
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
-        System.out.println("请输入第一个数");
-        double num1 = input.nextDouble();
-        System.out.println("请输入运算符号");
-        String opt = input.next();
-        System.out.println("请输入第二个数");
-        double num2 = input.nextDouble();
-
         Calculate calculate = new Calculate();
-        calculate.showCalResult(num1, opt, num2);
+        System.out.println("请输入第一个数");
+        String a = input.nextLine();
+        float num1 = Float.parseFloat(a);
+        while(true){
+            System.out.println("请输入运算符号");
+            String opt = input.nextLine();
+            if(opt.equals("=")){
+                System.out.println(num1);
+                System.out.println("计算完毕。");
+                break;
+            }
+
+            if(!(opt.equals("+") || opt.equals("-") || opt.equals("*") || opt.equals("/"))){
+                System.out.println("运算符号输入错误, 只能输入[+ - * /], 结束请输入“=”号. ");
+                continue;
+            }
+            
+            System.out.println("请输入第二个数");
+            String b = input.nextLine();
+            float num2 = Float.parseFloat(b);
+
+            num1 = calculate.showCalResult(num1, opt, num2);
+        }
     }
 
 }
