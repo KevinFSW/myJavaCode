@@ -38,7 +38,7 @@ public class Calculate{
         System.out.println(result);
         return result;
     }
-
+/*
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         Calculate calculate = new Calculate();
@@ -66,5 +66,5 @@ public class Calculate{
             num1 = calculate.showCalResult(num1, opt, num2);
         }
     }
-
+*/
 }

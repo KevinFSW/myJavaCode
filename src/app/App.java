@@ -7,6 +7,7 @@ package app;
 import app.operation.*;
 import app.syntactic.*;
 import app.array.*;
+import app.arraybox.IntArrayBox;
 import app.object.arrayopt.*;
 import app.object.drawstar.*;
 
@@ -54,6 +55,7 @@ public class App {
         DrawStar drawStar = new DrawStar();
         drawStar.starDrawHandstandRightTriangle(3, '*', false);
         */
+        /*
         ArrayOpt arrayOpt = new ArrayOpt();
         int[] array0 = {0,1,2,3,4};
         int[] array1 = {5,6,7,8,9};
@@ -72,7 +74,6 @@ public class App {
             System.out.println("找不到这个元素");
         }
         
-        /*
         //arrayOpt.setResultOutputEnable(true);
         arrayOutput2 = arrayOpt.exchangeTwoArrayValue(array0, array1);
         array0 = arrayOutput2[0];
@@ -106,5 +107,33 @@ public class App {
         arrayOpt.outputArray(array2);
         arrayOpt.outputArray(array3);
         */
+
+        IntArrayBox arrayBox = new IntArrayBox();
+
+        for (int i = 0; i < 10; i++) {
+            arrayBox.add(i);
+            System.out.println("size:" + arrayBox.size());
+        }
+
+        for (int i = 0; i < arrayBox.size(); i++) {
+            System.out.println("element:" + arrayBox.get(i));
+        }
+
+        arrayBox.remove(7);
+        System.out.println("size:" + arrayBox.size());
+
+        for (int i = 0; i < arrayBox.size(); i++) {
+            System.out.println("element:" + arrayBox.get(i));
+        }
+
+        for (int i = 0; i < 10; i++) {
+            arrayBox.add(i);
+            System.out.println("size:" + arrayBox.size());
+        }
+
+        for (int i = 0; i < arrayBox.size(); i++) {
+            System.out.println("element:" + arrayBox.get(i));
+        }
+
     }
 }
