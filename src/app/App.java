@@ -6,9 +6,15 @@ package app;
 
 import app.operation.*;
 import app.syntactic.*;
+
+import java.lang.invoke.StringConcatException;
+import java.util.Scanner;
+
 import app.array.*;
 import app.arraybox.IntArrayBox;
 import app.arraybox.StringArrayBox;
+import app.classrelation.Farmer;
+import app.classrelation.PigKiller;
 import app.object.arrayopt.*;
 import app.object.drawstar.*;
 
@@ -108,7 +114,7 @@ public class App {
         arrayOpt.outputArray(array2);
         arrayOpt.outputArray(array3);
         */
-
+        /*
         StringArrayBox arrayBox = new StringArrayBox();
         
         for (int i = 0; i < 10; i++) {
@@ -135,6 +141,23 @@ public class App {
         for (int i = 0; i < arrayBox.size(); i++) {
             System.out.println("element:" + arrayBox.get(i));
         }
-        
+        */
+
+        Farmer farmer = new Farmer();
+        Scanner input = new Scanner(System.in);
+        PigKiller pigKiller = new PigKiller();
+        farmer.farmerBuyPig();
+        while(true){
+            System.out.println("要喂猪了，喂几个月？");
+            int month = input.nextInt();
+            for (int i = 0; i < month; i++) {
+                farmer.farmerFeedPig();
+            }
+
+            if(pigKiller.pigKillerBuyPig(farmer.farmerSellPig())){
+                break;
+            }
+        }
+        pigKiller.pigKillerKillPig();
     }
 }

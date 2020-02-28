@@ -9,6 +9,9 @@ package app.arraybox;
  */
 public class StringArrayBox extends ArrayBox<String>{
     
+    public StringArrayBox(){
+        super();
+    }
 	public StringArrayBox(int i) {
         super(i);
     }

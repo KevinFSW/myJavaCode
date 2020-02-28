@@ -9,6 +9,9 @@ package app.arraybox;
  */
 public class ByteArrayBox extends ArrayBox<Byte>{
 
+	public ByteArrayBox(){
+        super();
+    }
 	public ByteArrayBox(int i) {
         super(i);
 	}
