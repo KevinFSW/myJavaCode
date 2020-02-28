@@ -8,6 +8,7 @@ import app.operation.*;
 import app.syntactic.*;
 import app.array.*;
 import app.arraybox.IntArrayBox;
+import app.arraybox.StringArrayBox;
 import app.object.arrayopt.*;
 import app.object.drawstar.*;
 
@@ -108,10 +109,10 @@ public class App {
         arrayOpt.outputArray(array3);
         */
 
-        IntArrayBox arrayBox = new IntArrayBox();
-
+        StringArrayBox arrayBox = new StringArrayBox();
+        
         for (int i = 0; i < 10; i++) {
-            arrayBox.add(i);
+            arrayBox.add("i" + i);
             System.out.println("size:" + arrayBox.size());
         }
 
@@ -127,13 +128,13 @@ public class App {
         }
 
         for (int i = 0; i < 10; i++) {
-            arrayBox.add(i);
+            arrayBox.add("i" + 2);
             System.out.println("size:" + arrayBox.size());
         }
 
         for (int i = 0; i < arrayBox.size(); i++) {
             System.out.println("element:" + arrayBox.get(i));
         }
-
+        
     }
 }
