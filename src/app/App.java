@@ -13,12 +13,17 @@ import java.util.Scanner;
 import app.array.*;
 import app.arraybox.IntArrayBox;
 import app.arraybox.StringArrayBox;
-import app.classrelation.Farmer;
-import app.classrelation.PigKiller;
+import app.classrelation.car.Car;
+import app.classrelation.car.Wheel;
+import app.classrelation.computerlab.ComputerLab;
+import app.classrelation.computerlab.Student;
+import app.classrelation.killpig.*;
 import app.object.arrayopt.*;
 import app.object.drawstar.*;
 
 public class App {
+
+    private static Scanner input;
     public static void main(String[] args) throws Exception {
         /*
         OperationalSymbol.test0();
@@ -142,11 +147,14 @@ public class App {
             System.out.println("element:" + arrayBox.get(i));
         }
         */
-
+        /*
         Farmer farmer = new Farmer();
         Scanner input = new Scanner(System.in);
         PigKiller pigKiller = new PigKiller();
-        farmer.farmerBuyPig();
+        System.out.println("农民要买猪仔了，你有什么猪？");
+        String type = input.nextLine();
+        farmer.farmerBuyPig(type);
+        System.out.println("农民买了一头" + type);
         while(true){
             System.out.println("要喂猪了，喂几个月？");
             int month = input.nextInt();
@@ -159,5 +167,70 @@ public class App {
             }
         }
         pigKiller.pigKillerKillPig();
+        */
+        /*
+        Car car = new Car();
+        Wheel wheel = new Wheel("kkk", 10, "black");
+        car.carRepair(wheel);
+        */
+
+        ComputerLab computerLab = new ComputerLab();
+        //Student student = new Student("name", "grade", 0);
+        Student[] students = new Student[8];
+        for (int i = 0; i < students.length; i++) {
+            students[i] = new Student("name" + i, "grade 3", i);
+        } 
+
+        input = new Scanner(System.in);
+
+        System.out.println("一共有" + students.length + "个学生");
+
+        while(true){
+            System.out.println("你想让谁来上机？请输入学生的序号，输入q退出");
+            String sid = input.nextLine();
+            if(sid.equals("q")){
+                break;
+            }
+            int id = Integer.parseInt(sid);
+
+            userDefineLoop(computerLab, students, id);
+        }
+
+        //computerLab.allowUserToFinishUsingComputer(student);
+    }
+
+    /**
+     * 递归
+     * @param computerLab
+     * @param students
+     * @param param
+     */
+    private static void userDefineLoop(ComputerLab computerLab, Student[] students, int param){
+        int ret = computerLab.acceptUserToUseComputer(students[param]);
+        if(ret == 1){
+            System.out.println(param + "号学生上机成功");
+        }
+        else{
+            System.out.println(param + "号学生上机失败");
+            if(ret == -1){
+                System.out.println("没有空闲的电脑了");
+                System.out.println("需要谁下机空出电脑吗？是请输入学生的序号，否则输入q");
+                String sid = input.nextLine();
+                if(sid.equals("q")){
+                    return;//返回
+                }
+
+                int id = Integer.parseInt(sid);
+                //让这个学生下机
+                if(!computerLab.allowUserToFinishUsingComputer(students[id])){
+                    System.out.println(id + "号学生没有在上机");
+                }
+
+                userDefineLoop(computerLab, students, param);//继续让新来的上机
+            }
+            else if(ret == -2){
+                System.out.println(param + "号学生已经在上机了");
+            }
+        }
     }
 }
