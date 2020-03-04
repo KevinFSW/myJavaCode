@@ -3,17 +3,17 @@
  */
 package app.exception;
 
-public class ArrayBoxIndexOutOfBoundsException extends RuntimeException{
+public class BoxIndexOutOfBoundsException extends RuntimeException{
     /**
      *
      */
     private static final long serialVersionUID = 1L;
 
-    public ArrayBoxIndexOutOfBoundsException() {
+    public BoxIndexOutOfBoundsException() {
         
     }
 
-    public ArrayBoxIndexOutOfBoundsException(String msg) {
+    public BoxIndexOutOfBoundsException(String msg) {
         super(msg);
     }
 }

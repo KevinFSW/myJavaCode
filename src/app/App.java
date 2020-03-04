@@ -4,18 +4,34 @@
 
 package app;
 
-import app.modifier.Modifier;
-import app.modifier.ModifierSub;
+import app.arraybox.ArrayBox;
+import app.linkedbox.LinkedBox;
 
 public class App {
 
     public static void main(String[] args) throws Exception {
-        Modifier modifier = new Modifier();
-        ModifierSub modifierSub = new ModifierSub();
-        modifier.setPoint(0);
-        modifierSub.optContent();
-        modifier.setContent("ct");
-        System.out.println(modifier.getContent());
-        //System.out.println(modifierSub.getContent());
+        LinkedBox<String> arrayBox = new LinkedBox<String>();
+        // ArrayBox<String> arrayBox = new ArrayBox<String>();
+        for (int i = 0; i < 10; i++) {
+            arrayBox.add("i"+i);
+        }
+
+        for (int i = 0; i < arrayBox.size(); i++) {
+            System.out.print(arrayBox.get(i) + "\t");
+        }
+        System.out.println();
+
+        //arrayBox.remove(5);
+        for (int i = 0; i < arrayBox.size(); i++) {
+            System.out.print(arrayBox.remove(i) + "\t");
+        }
+        System.out.println();
+
+        for (int i = 0; i < arrayBox.size(); i++) {
+            System.out.print(arrayBox.get(i) + "\t");
+        }
+        System.out.println();
+
+        System.out.println(arrayBox.get(5));
     }
 }

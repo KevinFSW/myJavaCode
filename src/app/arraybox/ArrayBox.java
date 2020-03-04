@@ -3,12 +3,14 @@
  */
 package app.arraybox;
 
-import app.exception.*;
+import app.box.Box;
+import app.exception.BoxIndexOutOfBoundsException;
+import app.exception.ArrayBoxNegativeSizeException;
 
 /**
  * 设计一个数组容器，能够不限定长度，能添加，删除，取出元素，能查询有效元素的个数
  */
-public class ArrayBox<E>{
+public class ArrayBox<E> implements Box<E>{
     /**
      * 常量：默认的初始化长度
      */
@@ -50,7 +52,7 @@ public class ArrayBox<E>{
      */
     private void rangeCheck(int index){
         if(index >= this.size || index < 0){
-            throw new ArrayBoxIndexOutOfBoundsException("index:" + index + ", size:" + this.size);
+            throw new BoxIndexOutOfBoundsException("index:" + index + ", size:" + this.size);
         }
     }
 
@@ -82,10 +84,7 @@ public class ArrayBox<E>{
 
 //======================================================================
 
-    /**
-     * 方法：往ArrayBox里面添加元素
-     * @param element
-     */
+    @Override
     public boolean add(E element){
         int size = this.size + 1;//长度加1
         this.capacityCheck(size);//检查容量
@@ -95,10 +94,7 @@ public class ArrayBox<E>{
 
 //======================================================================
 
-    /**
-     * 方法：从ArrayBox里面删除指定索引的元素
-     * @param index
-     */
+    @Override
     public E remove(int index){
         rangeCheck(index);
 
@@ -115,11 +111,7 @@ public class ArrayBox<E>{
 
 //======================================================================
 
-    /**
-     * 方法：获取ArrayBox指定索引的值
-     * @param index
-     * @return ArrayBox指定索引的值
-     */
+    @Override
     public E get(int index){
         rangeCheck(index);
         return (E) this.array[index];//直接从intArray通过索引拿元素
@@ -127,10 +119,7 @@ public class ArrayBox<E>{
 
 //======================================================================
 
-    /**
-     * 方法：获取ArrayBox的长度
-     * @return ArrayBox的长度
-     */
+    @Override
     public int size(){
         return this.size;
     }
