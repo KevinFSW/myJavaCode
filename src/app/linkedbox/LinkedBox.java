@@ -4,6 +4,49 @@ import app.box.Box;
 import app.exception.BoxIndexOutOfBoundsException;
 
 public class LinkedBox<E> implements Box<E> {
+
+    private class Node<ET>{
+        private Node<ET> prev;
+        private Node<ET> next;
+        private ET item;
+    
+        public Node(){
+            this.prev = null;
+            this.next = null;
+            this.item = null;
+        }
+    
+        public Node(Node<ET> prev, Node<ET> next, ET item){
+            this.prev = prev;
+            this.next = next;
+            this.item = item;
+        }
+    
+        public Node<ET> getPrev(){
+            return this.prev;
+        }
+    
+        public Node<ET> getNext(){
+            return this.next;
+        }
+    
+        public ET getItem(){
+            return this.item;
+        }
+    
+        public void setPrev(Node<ET> prev){
+            this.prev = prev;
+        }
+    
+        public void setNext(Node<ET> next){
+            this.next = next;
+        }
+    
+        public void setItem(ET item){
+            this.item = item;
+        }
+    }
+    
     /**
      * 存储首节点
      */

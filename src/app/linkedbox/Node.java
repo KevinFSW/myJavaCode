@@ -1,5 +1,5 @@
 package app.linkedbox;
-
+/*
 public class Node<E>{
     private Node<E> prev;
     private Node<E> next;
@@ -42,3 +42,4 @@ public class Node<E>{
     }
 
 }
+*/

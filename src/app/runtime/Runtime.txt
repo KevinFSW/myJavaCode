@@ -1,0 +1,18 @@
+GC:Garbage Collector
+
+    Runtime 类：
+        maxMemory
+        totalMemory
+        freeMemory
+
+        堆内存溢出OutOfMemoryError
+
+
+        内存管理：
+            栈内存-----变量空间  方法临时执行空间  从创建到执行完毕   立即回收
+            堆内存-----new 申请的对象空间  通过GC回收  对象空间没有被引用则视为垃圾被回收
+            方法区-----常量  类模板  静态成员  有且只有一份  不回收
+
+            System.gc();通知系统回收
+            
+            通过重写finalize方法，添加自己的东西，在gc回收对象时做一些操作

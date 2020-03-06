@@ -1,0 +1,15 @@
+枚举
+    对象个数固定且有限
+    通过枚举类直接属性名（枚举对象）
+    默认继承Enum类和Object类，不允许再extends其他类
+    Enum类的一些方法：
+        name 枚举对象的名字  name()获取name属性
+        ordinal 枚举的序号
+        valueOf 根据名字（name）找到枚举对象
+        values 获取全部的枚举对象，返回一个枚举类的数组
+        compareTo 可以比较两枚举对象，返回 int
+        toString 可以重写的方法
+
+    可以在switch中使用枚举
+
+    enum类可以添加自己的属性和方法，以及构造方法，但是构造方法不能是公有的
