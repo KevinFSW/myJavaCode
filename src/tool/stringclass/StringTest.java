@@ -70,12 +70,8 @@ public class StringTest{
         return true;
         */
     /************************************************************** */
-        //方法2：截取一半字符串，反序一半，然后跟另一半比较
-        String strPart0 = str.substring(0, str.length() / 2);
-        //利用写好的方法反序
-        strPart0 = StringTest.stringReverse(strPart0);
-        //判断str是否是由strPart0结尾的（如果是回文，前半部分反序后肯定是后半部分）
-        if(str.endsWith(strPart0)){
+        //方法2：利用写好的方法反序, 判断反转后是否与原来一样
+        if(StringTest.stringReverse(str).equals(str)){
             return true;
         }
         
@@ -171,6 +167,10 @@ public class StringTest{
             return 0;
         }
 
+        //把原来字符串里面的target全部替换为"", 再用原来的总长度减去替换后的长度，得到的长
+        //度是所有找到的target的总长度，再除以target的长度就得到了target的个数
+        return (str.length() - str.replaceAll(target, "").length())/target.length();
+        /*
         //先看看str里面有没有target，没有则直接return 0
         if(!str.contains(target)){
             return 0;
@@ -190,6 +190,7 @@ public class StringTest{
         }
 
         return addNum;
+        */
     }
 
     //将给定的字符串中每个单词的首字母改成大写
@@ -241,6 +242,6 @@ public class StringTest{
     }
 
     public static void main(String[] args) {
-        System.out.println(StringTest.getNumbersInString("a w1ord 2or symbol3 that repr4esents an am5ount o6r a qu7antity ?"));
+        System.out.println(StringTest.getNumberOfTarget("ggggggghhhhjjjj", "g"));
     }
 }

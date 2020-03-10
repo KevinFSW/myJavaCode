@@ -7,9 +7,6 @@ String类 java.lang
         长度和内容不可变(即使有拼接操作，也不会改变原来的对象，而是产生了新的对象，但是变量并没有指向新的对象，所以变量的值还是原来的)
             在String类中有一个final修饰、私有的数组 private final char[] value;//数组长度固定，final修饰的变量的值（也就是数组的地址）不可变
         
-    StringBuffer
-    StringBuilder
-
     1、equals  //重写了，继承自object的方法
     2、hashCode //重写了，继承自object的方法
     3、compareTo //实现自Comparable接口，实现方法，结果按照字典排布编码顺序
@@ -37,6 +34,14 @@ String类 java.lang
     15、toUpperCase /  toLowerCase
     16、trim去掉字符串前后多余的空格
     17、matches
+        regex正则表达式（regular expression）
+        作用：
+            1、字符串的格式校验
+            2、字符串拆分和替换
+            3、字符串的查找 需要用到pattern类
+             
+
+    String的缺点：频繁修改时性能不好
 
     练习
         设计方法：
@@ -48,5 +53,43 @@ String类 java.lang
             统计字符出现的次数
             将给定的字符串中每个单词的首字母改成大写
             获取字符串中的全部数字
+
+    
+
+StringBuffer（安全）
+StringBuilder
+    所属的包  java.lang
+    继承AbstractStringBuilder
+    旧版本jdk：
+        实现的接口：Serializable CharSequence  Appendable
+        没有compareTo方法
+    新版本jdk13：
+        实现接口：Serializable, Comparable<StringBuilder>, CharSequence
+        有compareTo方法
+
+    public StringBuilder() {
+        super(16);
+    }
+    public StringBuilder(int capacity) {
+        super(capacity);
+    }
+    public StringBuilder(String str) {
+        super(str);
+    }
+    public StringBuilder(CharSequence seq) {
+        super(seq);
+    }
+
+    StringBuilder builder = new StringBuilder("0123456789");
+    builder.append("9876543210", 2, 9);//把9876543210的第二位到第八位追加到builder后面
+    builder.delete(0, 1);//把第0位删除
+    builder.deleteCharAt(1);
+    builder.reverse();
+    builder.insert(2, "w");//把w插入到第二个位置
+    builder.replace(3, 5, "w");//把第三第四位这两个字符换成一个w
+    builder.setCharAt(0, 'o');//把第0位改成o
+    builder.trimToSize();//把capacity() trim 到 length()
+    builder.substring(7);\
+
 
 
