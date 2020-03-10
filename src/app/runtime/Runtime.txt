@@ -6,6 +6,7 @@ GC:Garbage Collector
         freeMemory
 
         堆内存溢出OutOfMemoryError
+        栈内存溢出StackOverflowError
 
 
         内存管理：

@@ -1,0 +1,39 @@
+Math类 java.lang
+    abs绝对值
+    ceil向上取整
+    floor向下取整
+    rint临近的整数，如果两边距离一样，则返回偶数
+    round四舍五入的整数
+    pow(a,b)a的b次方
+    sqrt 获取给定数的平方根
+    random 0~1的随机数（小于1）
+
+Random类 java.util
+    构造方法创建对象
+
+    nextInt();
+    nextFloat();
+    ............
+
+UUID类 java.util
+    随机相关 randomUUID
+
+BigInteger类 java.math
+    大整数 long -2的63次方到2的63次方-1
+    继承自Number
+    常用的方法：四则运算
+        add  
+        subtract
+        multiply
+        divide
+
+BigDecimal类 java.math
+    超过了double取值范围的存储和计算
+    .setScale(位数, 设置模式);设置小数点之后保留的位数
+
+DecimalFormat类 java.text -----> 格式化
+    把小数格式化为一个指定格式的字符串
+    DecimalFormat df = new DecimalFormat("000.000");
+    String value = df.format(123.45);// ==> 123.450
+
+

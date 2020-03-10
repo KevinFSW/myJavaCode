@@ -1,0 +1,28 @@
+Date类 java.util
+    before
+    after
+    setTime
+    getTime
+    compareTo  return -1, 0, 1
+
+DateFormat类 java.text
+    SimpleDateFormat子类
+    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+Calendar类 java.util
+    通过类的方法创建对象
+    Calendar.newInstance();//默认当前系统时间的一个对象
+    after
+    before
+    setTime
+    getTime
+    set(Calendar.YEAR, 值)
+    get(Calendar.YEAR)
+    getTimeInMillis()
+    getTimeZooe()
+
+TimeZooe类 java.util
+    TimeZooe tz = TimeZooe.getDefault();
+
+
+

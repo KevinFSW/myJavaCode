@@ -1,0 +1,52 @@
+String类 java.lang
+    默认继承object
+    实现了三个接口Serializable CharSequence Comparable<>
+    一个非常特殊的引用数据类型，可以像基本数据类型那样创建和赋值
+    == 和 equals的区别
+    String的不可变特性
+        长度和内容不可变(即使有拼接操作，也不会改变原来的对象，而是产生了新的对象，但是变量并没有指向新的对象，所以变量的值还是原来的)
+            在String类中有一个final修饰、私有的数组 private final char[] value;//数组长度固定，final修饰的变量的值（也就是数组的地址）不可变
+        
+    StringBuffer
+    StringBuilder
+
+    1、equals  //重写了，继承自object的方法
+    2、hashCode //重写了，继承自object的方法
+    3、compareTo //实现自Comparable接口，实现方法，结果按照字典排布编码顺序
+              //按照长度较小的数组的长度进行循环，每次字符不一样，直接返回code之差
+              //若比较都一致，直接返回长度之差
+    4、toString //重写了，继承自object
+    5、length()
+        size()
+    6、charAt：返回字符
+        codePointAt：返回字符的十进制
+    7、concat：并非创建对象，而是创建新的数组存放拼接后的结果
+    8、contains：是否存在指定的内容
+        endsWith
+        startsWith
+    9、getByte返回byte[]   ---->   有重载byte一个字节，char两个字节
+        toCharArray返回char[]
+    10、indexOf  查找指定内容所在的索引，不存在则返回-1
+        lastIndexOf  查找指定内容最后一次出现的索引，不存在则返回-1
+    11、isEmpty  字符串是否为空
+    12、replace
+        replaceAll
+        replaceFirst
+    13、split 按照指定条件拆分。可以使用正则表达式，返回数组，若在字符串中没有找到指定的拆分条件，则返回的数组中只有原字符串
+    14、substring 截取字符串，如果条件是范围（如3~5），则结果是左闭右开（即截取第三和第四个字符）
+    15、toUpperCase /  toLowerCase
+    16、trim去掉字符串前后多余的空格
+    17、matches
+
+    练习
+        设计方法：
+            反转字符串
+            将指定字符串的正向反向拼接
+            判断是否是回文abcba
+            将字符串循环左移右移x位
+            寻找若干字符串中最长的那个
+            统计字符出现的次数
+            将给定的字符串中每个单词的首字母改成大写
+            获取字符串中的全部数字
+
+
