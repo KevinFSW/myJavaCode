@@ -56,8 +56,10 @@ String类 java.lang
 
     
 
-StringBuffer（安全）
-StringBuilder
+StringBuffer（安全）早期版本1.0
+StringBuilder 后来的版本 1.5
+    早期版本 线程同步 安全性高 效率低
+    后期版本 线程非同步 安全性低 效率高
     所属的包  java.lang
     继承AbstractStringBuilder
     旧版本jdk：
@@ -65,6 +67,7 @@ StringBuilder
         没有compareTo方法
     新版本jdk13：
         实现接口：Serializable, Comparable<StringBuilder>, CharSequence
+        间接实现Appendable（由AbstractStringBuilder实现）
         有compareTo方法
 
     public StringBuilder() {
@@ -91,5 +94,6 @@ StringBuilder
     builder.trimToSize();//把capacity() trim 到 length()
     builder.substring(7);\
 
-
+    string没有的
+        append  insert  delete  deleteCharAt  reverse  
 

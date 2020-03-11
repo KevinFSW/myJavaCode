@@ -1,0 +1,57 @@
+泛型(jdk 1.5之后出现的)
+    泛型类  泛型接口  泛型方法  高级泛型
+
+集合是用来存储一组元素的，长度可变
+    序：存入与取出顺序一样
+    重复：两个对象元素一样
+    一、Collection
+    存储的都是value对象
+    List 有序可重复
+        *1、ArrayList 
+            java.util
+            add get remove size set
+            addAll并集 removeAll差集 ratainAll交集
+            indexOf lastIndexOf contains List = subList()
+            isEmpty clear ensureCapacity iterator(迭代器)
+            toArray trimToSize
+
+        2、Vector（ArrayList早期版本，线程同步的synchronized）  
+            java.util
+            与ArrayList底层几乎一样，安全性高，效率低
+            默认每次扩容2倍，可以通过构造方法创建对象时修改这一机制
+
+            Stack类--->Vector的子类
+                search返回的是位置（索引加1）
+                
+        #、Queue接口
+            java.util   通常用到的子类LinkedList   ArrayDeque
+            一般的方法
+                add
+                element ---> get
+                remove 
+                offer 相当于add，不会抛出异常
+                peek 相当于element
+                poll 剪短，相当于remove
+
+        *3、LinkedList
+            适合插入删除，不适合遍历
+
+    Set  无序无重复
+
+
+
+
+
+    二、Map
+    存储的东西是以key-value形式存在的
+    key是无序无重复的   value是无序可重复的
+
+
+
+
+
+
+
+
+
+
