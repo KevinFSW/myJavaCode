@@ -37,7 +37,16 @@
             适合插入删除，不适合遍历
 
     Set  无序无重复
-
+        HashSet 底层是HashMap，数组加链表 （又叫散列表）
+            存放位置的算法：hash算法
+            常用方法：
+                add
+                remove(Object)
+                没有修改方法
+                可以使用增强for循环获取全部元素
+                iterator()获取一个迭代器对象
+        TreeSet
+            如果要把自己写的类的对象存入TreeSet，需要实现接口Comparable，并重写compareTo方法
 
 
 
