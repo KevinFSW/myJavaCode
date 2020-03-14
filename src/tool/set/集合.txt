@@ -40,7 +40,7 @@
         HashSet 底层是HashMap，数组加链表 （又叫散列表）
             存放位置的算法：hash算法
             常用方法：
-                add
+                add 若已经存了相同内容，则拒绝存入
                 remove(Object)
                 没有修改方法
                 可以使用增强for循环获取全部元素
@@ -51,9 +51,31 @@
 
 
 
-    二、Map
+    二、Map 
     存储的东西是以key-value形式存在的
     key是无序无重复的   value是无序可重复的
+    HashMap<K,V> java.util
+        添加 V put(K,V) 若已存在相同的key，则更新value
+        删除remove
+        修改可用put，也可用replace
+        查get(key)
+        遍历
+            先获取键key：keySet()
+            再获取value
+            用entrySet 获取全部entry(Node)对象
+            通过Entry获取key和value
+
+        练习：
+            设计一个学生，考试机，老师的关系
+            考试机存储题目 选择题 题库10道
+            考试前学生要登录系统
+            考试机随机生成试卷的方法5道
+            学生利用生成的试卷考试 ，生成答案
+            答案交给老师批改，最终获得成绩
+    TreeMap    java.util
+        TreeMap的key需要实现comparable接口
+
+    Propertise
 
 
 
