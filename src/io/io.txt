@@ -1,0 +1,30 @@
+I/O相关
+
+输入/输出（相对于对象而言的，数据进入对象是输入，出去对象是输出）：读数据是输入，写数据是输出
+    
+流：文件流  字符流  数据流  对象流  网络流
+
+File：java.io中的一个类
+    文件名不缺分大小写
+
+        System.out.println(file.exists());
+        System.out.println(file.canExecute());
+        System.out.println(file.canRead());
+        System.out.println(file.canWrite());
+        System.out.println(file.isFile());
+        System.out.println(file.isDirectory());
+        System.out.println(file.length());
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String s = simpleDateFormat.format(new Date(file.lastModified()));
+        System.out.println(s);
+        System.out.println(file.getName());
+        System.out.println(file.getAbsolutePath());
+        file.createNewFile();//肯定会创建文件，即使路径看起来是文件夹
+        file.mkdir();//肯定会创建文件夹，即使路径看起来是文件
+        file.mkdirs();//肯定会创建文件夹，即使路径看起来是文件
+        file.listFiles();//返回File数组
+            得到的数组为null，说明当前File是文件，否则是文件夹
+            得到的数组长度为0，说明文件夹里面没有文件和文件夹了
+            得到的数组长度不为0，说明文件夹里面还有文件或者文件夹
+        file.list();//返回字符串数组
+        file.delete();//不能删除非空文件夹
