@@ -28,3 +28,18 @@ File：java.io中的一个类
             得到的数组长度不为0，说明文件夹里面还有文件或者文件夹
         file.list();//返回字符串数组
         file.delete();//不能删除非空文件夹
+
+文件流
+    字节流 FileInputStream / FileOutputStream     java.io
+        FileInputStream  
+        FileOutputStream 
+        flush();//刷新到文件中
+
+
+    字符流 FileReader / FileWriter
+
+
+练习  
+    文件复制
+    文件加密
+    文件夹复制
