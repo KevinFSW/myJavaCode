@@ -1,0 +1,29 @@
+Throwable：exception   error
+exception 异常
+    人为规定的不符合预期的情况，导致程序没有按照指定的方向运行
+    捕获异常
+    try{ //try不能单独出现，后面必须有catch或者finally
+
+    }
+    catch(异常1 e){
+
+    }
+    catch(异常2 e){
+        
+    }
+    //finally可以没有
+    finally{
+        这里的代码一定会执行，即使之前有return
+    }
+
+    抛出异常
+        异常只能在方法上抛出，属性是不能处理异常的
+        方法（包括构造方法） throws 异常1[,异常2,异常3...]  //意思是，抛出异常给调函数的地方处理（外面怎么处理由外面决定）
+
+    自定义异常
+        如果继承的是RuntimeException ----> 运行时异常，不一定要添加处理手段
+        如果继承的是Exception ----> 编译时异常，必须添加处理手段（调用的地方throws异常或者使用try catch）
+    
+error 通常是有一些物理错误
+    StackOverflowError
+    OutOfMemoryError
