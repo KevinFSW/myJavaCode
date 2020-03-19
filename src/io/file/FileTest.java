@@ -4,6 +4,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
@@ -48,17 +50,23 @@ public class FileTest {
      * 
      * @param folder
      */
-    public void deletFolder(File folder) {
+    public boolean deletFolder(File folder) {
         if (folder == null) {
-            return;
+            return false;
         }
-
-        for (File f : folder.listFiles()) {
+        File[] fileList = folder.listFiles();
+        if(fileList == null){
+            folder.delete();//文件直接删除，不需要递归
+            return true;
+        }
+        for (File f : fileList) {
             if (f.listFiles() != null && f.listFiles().length != 0) {
                 this.deletFolder(f);// 遍历到一个文件夹，继续递归
             }
             f.delete();// 如果f是文件或者空文件夹，这里删除，如果f是文件夹且非空，会先递归进去删除里面的文件，再出来删除文件夹
         }
+
+        return true;
     }
 
     /**
@@ -129,6 +137,8 @@ public class FileTest {
      * @return
      */
     public Boolean fileCopy(String source, String destination, boolean force){
+        System.out.print(source + "--->");
+        System.out.println(destination);
         File s = new File(source);
         File d = new File(destination);
         FileInputStream fi = null;
@@ -161,6 +171,11 @@ public class FileTest {
         } finally {
             try {
                 fi.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            try {
                 fo.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -209,6 +224,11 @@ public class FileTest {
         } finally {
             try {
                 fi.close();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            try {
                 fo.close();
             } catch (IOException e) {
                 // TODO Auto-generated catch block
@@ -235,7 +255,7 @@ public class FileTest {
             fileTemp = File.createTempFile("prefix", "txt");
             fo = new FileOutputStream(fileTemp);
             fi = new FileInputStream(file);
-            fo.write((byte)(key >>> 4));
+            fo.write((byte)(key >>> 4));//在文件头写入加密信息
             fo.write((byte)(key << 4));
             fo.write(key);
             int rlen = fi.read();
@@ -255,6 +275,11 @@ public class FileTest {
             if(ret == false){
                 try {
                     fi.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                try {
                     fo.close();
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
@@ -288,7 +313,7 @@ public class FileTest {
             int b = fi.read();
             int c = fi.read();
             if(!((byte)a == (byte)(key >>> 4) && (byte)b == (byte)(key << 4) && (byte)c == key)){
-                return false;
+                return false;//判断文件头的加密信息是否与给定的一致
             }
             int rlen = fi.read();
             while(rlen != -1){
@@ -307,6 +332,11 @@ public class FileTest {
             if(ret == false){
                 try {
                     fi.close();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+                try {
                     fo.close();
                 } catch (IOException e) {
                     // TODO Auto-generated catch block
@@ -320,16 +350,84 @@ public class FileTest {
         return false;
     }
 
+    /**
+     * 复制文件夹和文件
+     * @param sourcePath
+     * @param destinationPath
+     * @return
+     */
+    public boolean folderCopy(String sourcePath, String destinationPath){
+        if (sourcePath == null) {
+            return false;
+        }
+
+        System.out.print(sourcePath + "--->");
+        System.out.println(destinationPath);
+
+        File oldFolder = new File(sourcePath);
+        File newFolder = new File(destinationPath + "\\" + oldFolder.getName());//完整的目标目录
+        File parent = newFolder.getParentFile(); //destinationPath的对象
+        if(parent.exists() == false){ //destinationPath不存在，先创建
+            parent.mkdirs();
+        }
+
+        File[] fileList = oldFolder.listFiles();
+
+        if(fileList == null){ //是文件，复制文件
+            this.fileCopy(oldFolder.getAbsolutePath(), newFolder.getAbsolutePath(), true);
+            return true;
+        }
+
+        newFolder.mkdirs(); //是文件夹，继续递归
+        for (File f : fileList) {
+            this.folderCopy(f.getAbsolutePath(), newFolder.getAbsolutePath());// 遍历到每个对象，继续递归
+        }
+
+        return true;
+    }
+
+    /**
+     * 文件剪切
+     * @param sourcePath
+     * @param destinationPath
+     * @return
+     */
+    public boolean cutFolder(String sourcePath, String destinationPath){
+        File old = new File(sourcePath);
+        return (this.folderCopy(sourcePath, destinationPath) && this.deletFolder(old));
+    }
+
+    /**
+     * 读纯文本
+     * @param path
+     */
+    public void txtFileRead(String path){
+        try {
+            FileReader fileReader = new FileReader(path);//只能打开纯文本文件
+            int rlen = fileReader.read();
+            while(rlen != -1){
+                System.out.print((char)rlen);
+                rlen = fileReader.read();
+            }
+            System.out.println();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) {
-        // String filePath = ".//src//io//file//test.txt";// src//io//file//test.txt路径不区分大小写
+        String filePath = ".//src//io//file//test.txt";// src//io//file//test.txt路径不区分大小写
         // File file = new File(filePath);
         FileTest test = new FileTest();
         // System.out.println(test.writerFile(file, "你好ccccc", false));
         // test.readFileByte(file);
+        test.txtFileRead(filePath);
         // System.out.println(test.fileCopy(".//src//io//file//test.txt", ".//src//io//file//testc.txt", true));
         // test.encryptFile(".//src//io//file//testc.txt", (byte)0xf2);
-        test.decryptFile(".//src//io//file//testc.txt", (byte)0xf2);
+        // test.decryptFile(".//src//io//file//testc.txt", (byte)0xf2);
+        // test.folderCopy("H:\\1\\", "H:\\2\\1\\3");
         // test.enterFolder(file, 0);
         // test.deletFolder(file);
         // file.delete();

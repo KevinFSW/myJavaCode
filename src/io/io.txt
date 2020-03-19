@@ -37,6 +37,7 @@ File：java.io中的一个类
 
 
     字符流 FileReader / FileWriter
+        只能读写纯文本
 
 
 练习  
