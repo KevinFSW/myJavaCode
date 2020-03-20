@@ -44,3 +44,22 @@ File：java.io中的一个类
     文件复制
     文件加密
     文件夹复制
+
+
+字符集
+
+
+缓冲流
+    在流管道里增加缓存的数据量
+    BufferedInputStream
+    BufferedOutputStream
+    BufferedReader    readLine
+    BufferedWriter
+
+数组流
+
+数据流 DataInputStream   DataOutputStream
+
+对象流 ObjectInputStream  ObjectOutputStream
+
+
