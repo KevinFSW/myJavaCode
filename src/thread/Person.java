@@ -17,6 +17,8 @@ public class Person extends Thread {
     public void run() {
         // TODO Auto-generated method stub
         while (true) {
+
+            //没有红包或者已经抢过了，sleep一下等一等
             if (redPackage == null || oldRedPackageId == redPackage.getPackageId()) {
                 try {
                     sleep(100);
@@ -27,9 +29,9 @@ public class Person extends Thread {
                 continue;
             }
             
-            oldRedPackageId = redPackage.getPackageId();
+            oldRedPackageId = redPackage.getPackageId();//更新红包ID
         
-            float get = this.redPackage.getMoneyRandom();
+            float get = this.redPackage.getMoneyRandom();//抢红包，看运气
             if(get != 0f){
                 System.out.println(this.name + "抢到了 " + get);
             }
