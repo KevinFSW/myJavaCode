@@ -1,0 +1,26 @@
+主线程   系统线程
+
+用户线程   main
+
+守护线程  GC
+
+
+线程的状态
+    new           start()    CPU调用run     wait()                        notify/notifyAll       exception over
+    创建线程------就绪状态------执行状态-----等待/挂起（之后可能进入异常/死亡，或者回到就绪状态）-------异常/死亡
+
+线程的实现
+  1、
+    描述一个类
+    继承父类Thread
+    重写run方法
+    new一个对象调用start
+
+  2、
+    描述一个类
+    实现一个父接口Runnable
+    重写run方法
+    new一个对象
+    new一个线程对象Thread t = new Thread(Object);
+    t.start();
+
