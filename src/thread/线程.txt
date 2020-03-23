@@ -29,3 +29,41 @@
     new一个线程对象Thread t = new Thread(Object);
     t.start();
 
+线程安全  
+    synchronized
+    1、放在方法结构上
+        public synchronized void get(){} 
+        锁定的是调用该方法的那个对象
+    2、放在方法内部
+        public void get(){
+            代码1;
+            synchronized(要锁定的对象){
+                代码2;
+            }
+            代码3;
+        }
+
+sleep:Thread类的静态方法
+
+wait: Object的方法
+    对象.wait() //不是对象等待，是访问对象的那个线程等待
+    让其等待的线程对象不是当前线程的所有者----产生异常
+    IllegalMonitorStateException
+
+notify/notifyAll：Object的方法
+
+setPriority
+
+
+笔试题
+    程序、进程、线程的概念和区别
+    线程的创建方法
+    线程的几种状态  如何切换
+                  sleep                                 wait
+1、所在的类        Thread                               Object
+2、调用            静态                                 对象调用
+3、理解           哪个位置调用                         对象调用方法
+                 哪个线程就等待                       访问对象的线程等待
+4、唤醒          到时间会自己唤醒                 需要其他对象调用notify唤醒
+5、锁            不会释放锁                           等待后会释放锁
+
