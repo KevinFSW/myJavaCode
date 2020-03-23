@@ -62,7 +62,11 @@ public class RedPackage extends Thread {
         while (true) {
             if (this.packageNum == 0) {
                 System.out.println("你要发多少钱？");
-                this.money = Float.parseFloat(input.nextLine());
+                String in = input.nextLine();
+                if(in.equals("exit")){
+                    break;
+                }
+                this.money = Float.parseFloat(in);
                 System.out.println("你要发多少个红包？");
                 this.packageNum = Integer.parseInt(input.nextLine());
                 this.basic = this.money/(float) this.packageNum;
@@ -74,8 +78,10 @@ public class RedPackage extends Thread {
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
+                break;
             }
         }
+        input.close();
     }
 
 }

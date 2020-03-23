@@ -17,7 +17,9 @@ public class Person extends Thread {
     public void run() {
         // TODO Auto-generated method stub
         while (true) {
-
+            if(redPackage.isAlive() == false){
+                break; //没人发红包了，不用窥屏了
+            }
             //没有红包或者已经抢过了，sleep一下等一等
             if (redPackage == null || oldRedPackageId == redPackage.getPackageId()) {
                 try {

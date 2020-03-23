@@ -7,8 +7,10 @@ public class ThreadTest {
         for (int i = 0; i < p.length; i++) {
             p[i] = new Person("p" + i);
             p[i].setRedPackage(redPackage);
-            p[i].start();
         }
         redPackage.start();
+        for (int i = 0; i < p.length; i++) {
+            p[i].start();
+        }
     }
 }
