@@ -52,7 +52,7 @@ wait: Object的方法
 
 notify/notifyAll：Object的方法
 
-setPriority
+setPriority：越大优先级越高
 
 
 笔试题
@@ -67,3 +67,15 @@ setPriority
 4、唤醒          到时间会自己唤醒                 需要其他对象调用notify唤醒
 5、锁            不会释放锁                           等待后会释放锁
 
+
+join：
+    谁加入谁调
+
+死锁问题：
+    多个线程共用资源可能产生的问题 
+    解决方法：
+        1、产生时间差
+        2、不要产生对象共用情况
+
+计时器/定时器：
+    Timer  java.util
