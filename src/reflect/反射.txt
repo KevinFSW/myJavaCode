@@ -1,0 +1,127 @@
+反射 reflect
+
+类描述对象，反射描述类
+
+Class：描述类本身
+Package：描述类所在的包
+Field：描述类中的属性
+Method：描述类中的方法
+Constructor：描述类中的构造方法
+Annotation：用来描述类中的注解
+
+1、获取Class
+    Class clazz = Class.forName("包名.类名");
+    Class clazz = 类名.class;
+    Class clazz = 对象.getClass();
+
+    Class clazz = Class.forName("reflect.Person");
+
+2、常用方法
+    获取修饰符:getModifiers();
+        ABSTRACT           1024
+        FINAL              16
+        INTERFACE          512
+        NATIVE             256
+        PRIVATE            2
+        PROTECTED          4
+        PUBLIC             1
+        STATIC             8
+        STRICT             2048
+        SYNCHRONIZED       32
+        TRANSIENT          128
+        VOLATILE           64
+        System.out.println(clazz.getModifiers());
+
+    获取名字
+        System.out.println(clazz.getName());
+        System.out.println(clazz.getSimpleName());
+
+    获取所在包
+        Package p = clazz.getPackage();
+        System.out.println(clazz.getPackageName());
+        System.out.println(p.getName());
+
+    获取父类Class
+        System.out.println(clazz.getSuperclass().getName());
+
+    获取接口
+        Class[] classes = clazz.getInterfaces();
+
+    获取属性
+        // Field field = clazz.getField("name");//只能获取公有属性（包括继承自父类的）
+        // System.out.println(field.getName());
+        Field[] fields = clazz.getFields();//只能获取公有属性（包括继承自父类的）
+        for (Field field2 : fields) {
+            System.out.print(field2.getType().getSimpleName() + '\t');//获取属性的数据类型
+            System.out.println(field2.getName());
+        }
+        Person person = (Person)clazz.newInstance();
+        clazz = person.getClass();
+        Field dField = clazz.getDeclaredField("money"); //能够获取公有私有属性
+        System.out.println(dField.getName());
+    获取属性的值
+        System.out.println(dField.get(person));//获取属性的值
+        dField.setAccessible(true);//私有属性赋值之前要配置权限
+
+    设置属性的值
+        dField.set(person, 10);
+        System.out.println(dField.get(person));
+
+    获取方法
+        Method method = clazz.getMethod("personEat", String.class); //只能获取公有方法
+        System.out.println(method.getName());
+
+        Method privateMethod = clazz.getDeclaredMethod("personSleep", String.class); //获取公有私有方法
+        Method[] privateMethods = clazz.getDeclaredMethods(); //获取所有公有私有方法
+        for (Method method2 : privateMethods) {
+            System.out.println(method2.getName());
+            if(method2.getName().equals("personSleep"))
+            {
+                try {
+                    method2.setAccessible(true);
+                    method2.invoke(person, "sleep");
+                } catch (InvocationTargetException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        }
+
+    获取返回值类型
+        System.out.println(method.getReturnType().getName());
+
+    获取参数类型
+        Class[] type = method.getParameterTypes();
+        for (Class class1 : type) {
+            System.out.println(class1.getName());
+        }
+
+    获取方法修饰符
+        System.out.println(method.getModifiers());
+
+    执行方法
+        try {
+            method.invoke(person, "food");
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+    获取构造方法
+        Constructor constructor = clazz.getConstructor();
+        try {
+            Person person2 = (Person) constructor.newInstance(); //创建对象
+            person2.personEat();
+        } catch (InvocationTargetException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+IOC 控制反转（创建对象交给别人做，不用自己创建）
+DI  依赖注入，创建对象时帮忙把属性赋值
+
+
+
+    
+

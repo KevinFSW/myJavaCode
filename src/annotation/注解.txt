@@ -1,0 +1,29 @@
+注解（与注释不同，注解可以编译到代码中）
+
+Annotation：用来描述类中的注解
+    @xxx [(一些信息)]
+
+    注解的作用：
+        1、充当注释
+        2、代码检查（例如@Override）
+        3、携带一些信息
+            基本数据类型
+            String类型
+            枚举
+            注解类型
+            数组（必须是以上四个类型的数组）
+
+常见的annotation
+    1、@Override  重写
+    2、@Deprecated  废弃的
+    3、@SuppressWarnings({"xxxx"})  参数是一个数组（元素只有一个时，大括号可以省略）
+        xxxx:unused  unchecked  deprecated  serial  rawtypes  all
+
+自己描述一个注解
+    @interface（与接口相似）
+    可以描述public static final的属性
+    可以描述public abstract的方法，且必须有返回值
+    添加元注解
+
+
+Properties类：用于数据文件加载
