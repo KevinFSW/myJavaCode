@@ -1,0 +1,12 @@
+AWT：Abstract Windows Toolkit
+Swing：
+    窗体 JFrame
+    面板 JPanel
+    组件 JButton
+         JLabel
+         JTextField
+         JTextArea
+    事件 ActionListener 动作/响应事件
+         KeyListener 键盘事件
+         MouseListener 鼠标事件
+         ComponentListener 组件事件
